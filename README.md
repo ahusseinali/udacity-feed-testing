@@ -4,7 +4,7 @@ In this project I was given a web-based application that reads RSS feeds. My goa
 
 ## Install and Run
 1. Clone the repository to your local machine.
-2. Open _index.html_ on Google Chrome.
+2. Open _index.html_ in Google Chrome.
 
 ## Tests Validation
 1. When the page loads, you will find the tests at the bottom of the page.
