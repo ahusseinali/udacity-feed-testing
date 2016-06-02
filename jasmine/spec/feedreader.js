@@ -110,24 +110,31 @@ $(function() {
         function getFirstFeedEntryUrl() {
             return $('.feed').find('.entry-link').first().attr('href');
         }
-
-        beforeEach(function(done) {
-            loadFeed(0, function() {
-                initialFeed = getFirstFeedEntryUrl();
-                // perform another load feed
-                loadFeed(1, function() {
-                    done();
-                });
-            });
-        });
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
         it('changes feed content', function(done) {
-            var newFirstFeedEntry = getFirstFeedEntryUrl();
-            expect(newFirstFeedEntry).not.toBe(initialFeed);
-            done();
-         });
+            loadFeed(0, function() {
+                initialFeed = getFirstFeedEntryUrl();
+                // perform another load feed
+                loadFeed(1, function() {
+                    var newFirstFeedEntry = getFirstFeedEntryUrl();
+                    expect(newFirstFeedEntry).not.toBe(initialFeed);
+                    done();
+                });
+            });
+        });
+
+        it('fails to load out of bound feed', function() {
+            expect(function() { loadFeed(-1); }).toThrow();
+        });
+
+        it('fails to load data from undefined feed list', function() {
+            var oldFeeds = allFeeds;
+            allFeeds = undefined;
+            expect(function() { loadFeed(0); }).toThrow();
+            allFeeds = oldFeeds;
+        });
     });
 }());
