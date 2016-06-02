@@ -67,10 +67,9 @@ $(function() {
          });
 
          // Test that initial feed exists when loadFeed runs
-         it('loads initial feed correctly', function(done) {
-            expect($('.feed').find('.entry').length).not.toBe(0);
-            done();
-         })
+         it('loads initial feed correctly', function() {
+            expect($('.feed .entry').length).toBeGreaterThan(0);
+         });
     });
 
     // Test suite to test the change in feed selection.
@@ -79,7 +78,7 @@ $(function() {
 
         // Retreives the url of the first entry in the feed list.
         function getFirstFeedEntryUrl() {
-            return $('.feed').find('.entry-link').first().attr('href');
+            return $('.feed .entry-link').first().attr('href');
         }
 
         // Test that chaning the loaded feed changes the DOM entries as well.
