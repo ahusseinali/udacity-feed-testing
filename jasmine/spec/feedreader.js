@@ -63,9 +63,7 @@ $(function() {
     describe('Initial Entries', function() {
          beforeEach(function(done) {
             // Load feed asynchronously then trigger done after the loading finish.
-            loadFeed(0, function() {
-                done();
-            });
+            loadFeed(0, done);
          });
 
          // Test that initial feed exists when loadFeed runs
